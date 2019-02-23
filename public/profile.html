@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Let's Garden</title>
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Cardo|Cinzel|Kaushan+Script|Sacramento" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Bad+Script|Cardo|Cinzel|Kaushan+Script|Sacramento" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/profile.css">
+
+    <link rel="stylesheet" href="css/header.css">
+
+
+<body>
+
+        <header>
+
+                <nav class="navbar navbar-expand-lg navbar-light nav-garden">
+                        <a id="brand" class="navbar-brand nav-css" href="/profile"> Let's <br/> Garden  </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div id="nav-bar-right" class="navbar-nav ">
+                                <a id="nav-css" class="nav-item nav-link " href="/">Home</a>
+                                <a id="nav-css" class="nav-item nav-link nav-css" href="/search">Search Plants</a>
+                                <a id="nav-css" class="nav-item nav-link nav-css" href="/profile">My Profile</a>
+                                <a id="nav-css" class="nav-item nav-link nav-css" href="/contact">Contact Us</a>
+    
+                            </div>
+                        </div>
+                    </nav>
+    
+                
+        </header>
+    
+        <div class="profile-body">
+                <div class= "container">
+                <div class="profile-holder">
+                <div class="row">
+                    <div >
+                    <h1>Profile</h1>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <h3> Hey there, {this.state.first_name}! </h3>
+                    </div>
+                    <div class="row">
+                    <h3>Location: Deltona, FL {this.state.zipCode}</h3>
+                    </div>
+                    <div class="row">
+                    <h3> Headline : {this.state.about}</h3>
+                    </div>
+                    </div>
+                    <div class="garden">
+                    <div>
+                      <h1>My Garden</h1>
+                      <h3>{this.state.plant1.name}</h3>
+                      <p>{this.state.plant1.description}</p>
+                      <p>{this.state.plant1.watering}</p>
+                      <button id="btn" class="btn btn-success">Remove</button>
+                      <button id="btn" class="btn btn-success">Swap</button>
+                      <br/>
+                      <br/>
+                      <h3>{this.state.plant2.name}</h3>
+                      <p>{this.state.plant2.description}</p>
+                      <p>{this.state.plant2.watering}</p>
+                      <button id="btn" class="btn btn-success">Remove</button>
+                      <button id="btn" class="btn btn-success">Swap</button>
+                      <br/>
+                    </div>
+                    </div>
+                  
+                </div>
+            </div>
+             </div>
+</body>
+
+</html>
