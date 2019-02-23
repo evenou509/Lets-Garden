@@ -1,0 +1,10 @@
+body{
+    background: url("../img//wild-flowers-571940_1920.jpg") no-repeat center center fixed;
+   height: 650px;
+   padding: 75px;
+}
+
+.home-holder{
+    background-color: whitesmoke;
+    /* padding-top: 100px */
+}
