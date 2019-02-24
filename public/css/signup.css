@@ -1,0 +1,15 @@
+body{
+    background: url("../img/water-lily-3784022_1920.jpg");
+
+}
+
+.page-body{
+    height: 800px;
+}
+
+.holder{
+    background: #a29bfe;
+    padding: 90px;
+    width: 550px;
+    border-radius: 10px;
+}
