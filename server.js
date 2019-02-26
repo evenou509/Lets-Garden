@@ -23,6 +23,10 @@ app.use(express.json());
 app.use(express.static("public"));
 
 require("./routes/html-routes")(app);
+require("./routes/user-routes")(app);
+
+
+
 
 
 

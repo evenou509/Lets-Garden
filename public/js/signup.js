@@ -7,18 +7,20 @@ $(document).ready(function(){
             last_name: $("#lastName").val().toLowerCase(),
             email: $("#email").val(),
             password: $("#password").val(),
-            zip: $("#zipCode").val(),
-            headline: $("#headline").val().toLowerCase(),
+            zipCode: $("#zipCode").val(),
+            about: $("#headline").val().toLowerCase(),
         }
 
         console.log(newUser)
+        console.log("new user info")
+
 
         var currentURL = window.location.origin;
 
         $.post(currentURL + "/api/users", newUser, function (data){
             
             console.log(data.first_name)
-            location.href = "../profile.html"
+            location.href = "/"
         })
 
     })
