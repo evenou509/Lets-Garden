@@ -1,12 +1,11 @@
-const router = require("express").Router();
-const plantController = require("../controllers/plantController");
+// const router = require("express").Router();
 
 
-router.route("/addplant")
-  .post(plantController.create);
+// router.route("/addplant")
+//   .post(plantController.create);
 
-  router.route("/all")
-  .post(plantController.findAll);
+//   router.route("/all")
+//   .post(plantController.findAll);
 
 
-module.exports = router;
+// module.exports = router;
