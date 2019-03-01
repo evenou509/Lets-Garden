@@ -1,9 +1,7 @@
 $(document).ready(function(){
 
-    const user = ""
     logIn()
-    
-    loadProfiie(user)
+
     
 })
 
