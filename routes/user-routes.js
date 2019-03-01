@@ -8,27 +8,26 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/user/:email", function (req, res) {
-    db.Patient.findOne({
+  app.get("/api/users/:email", function (req, res) {
+    db.User.findOne({
         where: {
             email: req.params.email
-        },
-        include: [db.Post]
-    }).then(function (dbPatient) {
-        res.json(dbPatient);
+        }
+    }).then(function (dbUser) {
+        res.json(dbUser);
     });
 });
 
-  app.get("/api/users/:id", function(req, res) {
-    db.User.findOne({
-      where: {
-        id: req.params.id
-      },
-      include: [db.Plant]
-    }).then(function(dbUser) {
-      res.json(dbUser);
-    });
-  });
+  // app.get("/api/users/:id", function(req, res) {
+  //   db.User.findOne({
+  //     where: {
+  //       id: req.params.id
+  //     },
+  //     include: [db.Plant]
+  //   }).then(function(dbUser) {
+  //     res.json(dbUser);
+  //   });
+  // });
 
   app.post("/api/users", function(req, res) {
     db.User.create(req.body).then(function(dbUser) {
