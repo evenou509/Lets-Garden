@@ -1,6 +1,10 @@
 $(document).ready(function(){
 
+    const user = ""
     logIn()
+    
+    loadProfiie(user)
+    
 })
 
 function logIn () {
@@ -26,13 +30,6 @@ function logIn () {
         else {
             alert("The password submitted in incorrect")
         }
-
     })
-
     })
-
-
-
-
-    
 }
