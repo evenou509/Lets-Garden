@@ -20,7 +20,7 @@ $(document).ready(function(){
         $.post(currentURL + "/api/users", newUser, function (data){
             
             console.log(data.first_name)
-            location.href = "/"
+            location.href = "/profile.html"
         })
 
     })
