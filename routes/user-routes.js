@@ -2,29 +2,44 @@ var db = require("../models");
 
 module.exports = function(app) {
   app.get("/api/users", function(req, res){
-    var query = {};
-    if(req.query.user_id) {
-      query.UserId = req.query.user_id
-    }
-
     db.User.findAll({
-      where: query,
-      include: [db.User]
     }).then(function(dbUser){
       res.json(dbUser)
     });
   });
+
+  app.get("/api/users/:email", function (req, res) {
+    db.User.findOne({
+        where: {
+            email: req.params.email
+        }
+    }).then(function (dbUser) {
+        res.json(dbUser);
+    });
+});
 
   app.get("/api/users/:id", function(req, res) {
     db.User.findOne({
       where: {
         id: req.params.id
       },
-      include: [db.User]
+      include: [db.Plant]
     }).then(function(dbUser) {
       res.json(dbUser);
     });
   });
+
+
+  // app.get("/api/users/:id", function(req, res) {
+  //   db.User.findOne({
+  //     where: {
+  //       id: req.params.id
+  //     },
+  //     include: [db.Plant]
+  //   }).then(function(dbUser) {
+  //     res.json(dbUser);
+  //   });
+  // });
 
   app.post("/api/users", function(req, res) {
     db.User.create(req.body).then(function(dbUser) {
