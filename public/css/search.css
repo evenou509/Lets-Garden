@@ -6,13 +6,13 @@ body{
 .card {
     background: rgb(218, 159, 241);
     border-radius: 2px;
-    height: 500px;
+    height: 400px;
     margin: 5rem 15rem;
     position: relative;
     width: 400px;
     box-shadow: 0 3px 6px #999, 0 3px 6px #999;
     text-align: center;
-    padding-bottom: 65px;
+    padding: 30px 15px;
   }
   
   #search-form{
