@@ -24,9 +24,9 @@ function loadUserData(email){
 
         var postFirst = $("#firstName").html("Hey there, " + firstName)
 
-        var postLocation = $("#location").html("Location " + data.zipCOde)
+        var postLocation = $("#location").html("Location: " + data.zipCode)
 
-        var postAbout = $("#about").html("Location " + data.zipCOde)
+        var postAbout = $("#about").html(data.about)
 
 
   
