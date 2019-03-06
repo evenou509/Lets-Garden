@@ -68,7 +68,7 @@ $(document).ready(function(){
 
     $("#print").empty()
 
-        console.log(plants.name)
+        console.log(plants)
 
         const plantCard = $("<div class='card'>");
         plantCard.append("<h3 id='card-title' class='card-title'>" + plants.name + "</h3>")
@@ -92,6 +92,23 @@ function addPlants(plants){
         event.preventDefault();
         console.log(plants)
 
+
+
+        var newPlant = {
+            plant_id: plants.id,
+            plant_name: plants.name,
+            UserId: userId,
+        }
+
+        console.log(newPlant)
+
+
+        var currentURL = window.location.origin;
+
+        $.post(currentURL + "/api/plants", newPlant, function (data){
+            console.log("this worked")
+            
+        })
     })
 
 

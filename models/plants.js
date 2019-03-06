@@ -1,12 +1,12 @@
 module.exports = function (sequelize, DataTypes) {
     var Plant = sequelize.define("Plant", {
-        user_id: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
+        // user_id: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     validate: {
+        //         len: [1]
+        //     }
+        // },
         plant_id: {
             type: DataTypes.STRING,
             allowNull: false,
