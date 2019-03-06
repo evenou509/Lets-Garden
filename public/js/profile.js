@@ -1,13 +1,8 @@
 $(document).ready(function(){
 
-   console.log(localStorage.email)
-
-   const email = localStorage.email
-
-   console.log(email, "this is the user email")
-   console.log(localStorage)
-
-   loadUserData(email)
+  const email = localStorage.email
+  
+  loadUserData(email)
 })
 
 function loadUserData(email){
