@@ -15,20 +15,30 @@ function logIn () {
     console.log(email)
     console.log(password)
 
+    
+
     $.ajax({
         url: "api/users/" + email ,
         method: "GET"
     })
     .then(function (data) {
         console.log(data)
-        if (password === data.password){
+        if (email === data.email && password === data.password){
 
+            localStorage.setItem('email', email);
+            // localStorage.email
+            console.log(localStorage.email)
             location.href = "/profile"
         } 
+
         else {
             alert("The password submitted in incorrect")
         }
     })
     })
 }
+
+// module.exports = function(email) {
+
+// }
 
