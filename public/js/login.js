@@ -21,13 +21,16 @@ function logIn () {
     })
     .then(function (data) {
         console.log(data)
+
         if (password === data.password){
 
+        
             location.href = "/profile"
+            // var postfirst = $("#firstName").html(data.first_name)
         } 
         else {
             alert("The password submitted in incorrect")
-        }
+        } 
     })
     })
 }
