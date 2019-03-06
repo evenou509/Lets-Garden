@@ -13,15 +13,18 @@ $(document).ready(function(){
 
         console.log(newUser)
         console.log("new user info")
-
+        const email= $('#email').val()
 
         var currentURL = window.location.origin;
 
         $.post(currentURL + "/api/users", newUser, function (data){
+            localStorage.setItem('email', email)
+            console.log(localStorage.email)
+            location.href = "/profile.html"
             
-            console.log(data.first_name)
-            location.href = "/"
         })
+
+
 
     })
 })

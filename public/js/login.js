@@ -29,11 +29,12 @@ function logIn () {
             // localStorage.email
             console.log(localStorage.email)
             location.href = "/profile"
+            // var postfirst = $("#firstName").html(data.first_name)
         } 
 
         else {
             alert("The password submitted in incorrect")
-        }
+        } 
     })
     })
 }
