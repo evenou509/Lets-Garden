@@ -31,7 +31,9 @@ function logIn () {
             location.href = "/profile"
             // var postfirst = $("#firstName").html(data.first_name)
         } 
-
+        else if (data.email === null){
+            alert("Email does not exist")
+        }
         else {
             alert("The password submitted in incorrect")
         } 

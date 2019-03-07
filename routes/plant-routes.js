@@ -9,13 +9,6 @@ module.exports = function(app) {
       });
 
       app.get("/api/plants", function(req, res) {
-        // var query = {};
-        // if (req.query.Userid) {
-        //   query.User.id = req.query.patient_id;
-        // }
-        // Here we add an "include" property to our options in our findAll query
-        // We set the value to an array of the models we want to include in a left outer join
-        // In this case, just db.Author
         db.Plant.findAll({
           where: 
             UserId = req.query.id,
@@ -25,12 +18,18 @@ module.exports = function(app) {
         });
       });
 
-      //   app.get("/api/plants", function(req, res){
-//     db.Plants.findAll({
-//     }).then(function(dbUser){
-//       res.json(dbUser)
-//     });
-//   });
+      app.delete("/api/plants/:id", function(req, res) {
+        // We just have to specify which todo we want to destroy with "where"
+        db.Plant.destroy({
+          where: {
+            id: req.params.id
+          }
+        }).then(function(dbPlant) {
+          res.json(dbPlant);
+        });
+    
+      });
+    
 
 //   app.get("/api/plants", function(req, res){
 //     db.Plants.findAll({

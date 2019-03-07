@@ -4,9 +4,7 @@ $(document).ready(function(){
   
   loadUserData(email)
 
-
-
-
+ 
 })
 
 function loadUserData(email){
@@ -44,91 +42,40 @@ function loadPlants(data){
             UserId: userId
         }
     }).then(result => {
-        if (result === null){
-            var postNull = $("#null-plant").html("<button id='btn' class='btn btn-success'> Add Some Plants </button")  
+        if (result === undefined || result.length == 0){
+            var postNull = $("#null-plant").html("<a role='button' href='/search' id='btn' class='btn btn-success'> Add Some Plants </a>")  
         }
         console.log(result)
 
-        getPlantData(result)
+        for (var i = 0; i < result.length; i++) {
+            
+
+        const gardenCard = $("<div>");
+
+        gardenCard.append("<h3>" + result[i].plant_name + "</h3>")
+        gardenCard.append("<p>" + result[i].description + "</p>")
+        gardenCard.append("<p> Stay away from: " + result[i].pests + "</p>")
+        gardenCard.append("<span> <button class='add btn btn-success' id='remove' value=" + result[i].id +"> Remove </button>  <button class='swap btn btn-success' id='swap'> Swap </button> </span>")
+     
+        $("#print-garden").append(gardenCard)
+        }
        
-        // for (var i = 0; i < result.length; i++) {
-
-
-          
-        // }
-   
+        removePlant(data)
     })
 }
 
-function getPlantData(result){
+function removePlant(data) {
+    $("#remove").on("click", function(){
+    event.preventDefault();
 
-    
-
-    const queryUrl = "http://harvesthelper.herokuapp.com/api/v1/plants?api_key=9bbe0cb9fc09ec115e66e1a2908a4d9e"
+    var id = $(this).attr('value');
 
     $.ajax({
-        url: queryUrl ,
-        method: "GET"
+      method: "DELETE",
+      url: "/api/plants/" + id
+    }).then(
+        location.reload()
+    );
+
     })
-    .then((plantData) => {
-               
-    console.log(plantData, "this is the plant data working")
-    console.log(result, "this is also working")
-     
-    // for (var i = 0; i < result.length; i++) {
-
-        
-    //     const userPlant = result[i].plant_id 
-    //     console.log(userPlant)
-
-        for (var j = 0; j < plantData.length; j++) {
-           
-            
-            for (var i = 0; i < result.length; i++) {
-
-        
-                const userPlant = result[i].plant_id 
-                console.log(userPlant)
-        
-                // console.log(plantData[j].id)
-            // console.log(result[i])
-        if (plantData[j].id === userPlant){
-            console.log("hello")
-            // console.log(plantData[j])
-            // console.log(userPlant)
-            
-        //   const gardenCard = $("<div>");
-
-        //     gardenCard.append("<h3>" + plantData[j].name + "</h3>")
-        //     gardenCard.append("<p>" + result[i].description + "</p>")
-        //     gardenCard.append("<p> Stay away from: " + result[i].pests + "</p>")
-        //     gardenCard.append("<span> <button class='add btn btn-success' id='add'> Remove </button>  <button class='swap btn btn-success' id='swap'> Swap </button> </span>")
-     
-        //     $("#print-garden").append(gardenCard)
-        }
-        }
-    }
-
-    // for (var i = 0; i < plantData.length; i++) {
-
-
-    //     if (plantData[i].id === result.id){
-    //         console.log("this is working")
-    //         console.log(result[i].id)
-    //         console.log(plantData.id)
-    //         // const gardenCard = $("<div>");
-
-    //         // gardenCard.append("<h3>" + plantData.name + "</h3>")
-    //         // gardenCard.append("<p>" + result[i].description + "</p>")
-    //         // gardenCard.append("<p> Stay away from: " + result[i].pests + "</p>")
-    //         // gardenCard.append("<span> <button class='add btn btn-success' id='add'> Remove </button>  <button class='swap btn btn-success' id='swap'> Swap </button> </span>")
-     
-    //         // $("#print-garden").append(gardenCard)
-    //     }
-       
-
-
-    // }
-
-})
-}
+  }
