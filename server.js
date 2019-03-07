@@ -24,6 +24,8 @@ app.use(express.static("public"));
 
 require("./routes/html-routes")(app);
 require("./routes/user-routes")(app);
+require("./routes/plant-routes")(app);
+
 
 
 
