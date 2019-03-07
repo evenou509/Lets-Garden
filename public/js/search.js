@@ -95,8 +95,16 @@ function addPlants(plants){
 
 
         var newPlant = {
-            plant_id: plants.id,
             plant_name: plants.name,
+            description: plants.description,
+            optimal_sun: plants.optimal_sun,
+            when_to_plant: plants.when_to_plant,
+            growing_from_seed: plants.growing_from_seed,
+            spacing: plants.spacing,
+            transplanting: plants.transplanting,
+            watering: plants.watering,
+            pests: plants.pests,
+            harvesting: plants.harvesting,
             UserId: userId,
         }
 
