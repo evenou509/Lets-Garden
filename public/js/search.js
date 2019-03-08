@@ -1,15 +1,10 @@
 $(document).ready(function(){
 
     const email = localStorage.email
-
-
-    console.log(localStorage)
  
     loadUserData(email)
 
     searchPlants()
-
-   
  })
  
  function loadUserData(email){
@@ -18,7 +13,6 @@ $(document).ready(function(){
          method: "GET"
      })
      .then(function (data) {
-         console.log(data)
 
          localStorage.setItem('id', data.id)
 
@@ -26,10 +20,6 @@ $(document).ready(function(){
  }
  
  function searchPlants(){
-
-    console.log("loading plants")
-
-
 
       $("#search").on("click", function(){
         event.preventDefault();
@@ -39,7 +29,6 @@ $(document).ready(function(){
         var search1Arr = search1.split("")
         search1Arr[0] = search1Arr[0].toUpperCase()
         var findPlant = search1Arr.join("")
-        console.log(findPlant)
 
         const queryUrl = "http://harvesthelper.herokuapp.com/api/v1/plants?api_key=9bbe0cb9fc09ec115e66e1a2908a4d9e"
 
@@ -55,10 +44,8 @@ $(document).ready(function(){
                 printCard(plants)
 
                 )
-      
           })
           .catch(err => console.log(err));
-
 
       })
  }
@@ -67,8 +54,6 @@ $(document).ready(function(){
  function printCard(plants) {
 
     $("#print").empty()
-
-        console.log(plants)
 
         const plantCard = $("<div class='card'>");
         plantCard.append("<h3 id='card-title' class='card-title'>" + plants.name + "</h3>")
@@ -79,20 +64,16 @@ $(document).ready(function(){
         $("#print").append(plantCard)
 
         addPlants(plants)
-    
+
+        swapPlants(plants)
  }
 
 function addPlants(plants){
 
-
     const userId = localStorage.id
-    console.log(userId, " this is the user id")
 
     $("#add").on("click", function(){
         event.preventDefault();
-        console.log(plants)
-
-
 
         var newPlant = {
             plant_name: plants.name,
@@ -105,20 +86,52 @@ function addPlants(plants){
             watering: plants.watering,
             pests: plants.pests,
             harvesting: plants.harvesting,
+            garden: true,
+            request: false,
+            swap: false,
             UserId: userId,
         }
-
-        console.log(newPlant)
-
 
         var currentURL = window.location.origin;
 
         $.post(currentURL + "/api/plants", newPlant, function (data){
-            console.log("this worked")
+            alert(plants.name + " has been added to your garden!")
             
         })
     })
 
 
 
+}
+
+function swapPlants(plants){
+    const userId = localStorage.id
+
+    $("#swap").on("click", function(){
+        event.preventDefault();
+
+        var newPlant = {
+            plant_name: plants.name,
+            description: plants.description,
+            optimal_sun: plants.optimal_sun,
+            when_to_plant: plants.when_to_plant,
+            growing_from_seed: plants.growing_from_seed,
+            spacing: plants.spacing,
+            transplanting: plants.transplanting,
+            watering: plants.watering,
+            pests: plants.pests,
+            harvesting: plants.harvesting,
+            garden: false,
+            request: true,
+            swap: false,
+            UserId: userId,
+        }
+
+        var currentURL = window.location.origin;
+
+        $.post(currentURL + "/api/plants", newPlant, function (data){
+            alert(plants.name + " has been added to your garden!")
+            
+        })
+    })  
 }

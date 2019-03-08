@@ -46,7 +46,18 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.TEXT,
             allowNull: true
         },
-
+        garden: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        },
+        request: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        },
+        swap: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        }
         
     });
 

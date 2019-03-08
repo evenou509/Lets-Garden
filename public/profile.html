@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
 
-
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -34,63 +33,93 @@
 
     <link rel="stylesheet" href="css/header.css">
 
-
 <body>
 
-        <header>
+    <header>
 
-                <nav class="navbar navbar-expand-lg navbar-light nav-garden">
-                        <a id="brand" class="navbar-brand nav-css" href="/profile"> Let's <br/> Garden  </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div id="nav-bar-right" class="navbar-nav ">
-                            
-                                <a id="nav-css" class="nav-item nav-link nav-css" href="/search">Search Plants</a>
-                                <a id="nav-css" class="nav-item nav-link nav-css" href="/profile">My Profile</a>
-                                <a id="nav-css" class="nav-item nav-link nav-css" href="/swap">Available to Swap</a>
-                                <a id="nav-css" class="nav-item nav-link nav-css" href="/contact">Contact Us</a>
-                                <a id="nav-css" class="nav-item nav-link " href="/">Logout</a>
-                            </div>
-                        </div>
-                    </nav>
-    
-                
-        </header>
-    
-        <div class="profile-body">
-                <div class= "container">
-                <div class="profile-holder">
-                <div class="row">
-                    <div >
-                    <h1>Profile</h1>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <h3 id="firstName"></h3>
-                    </div>
-                    <div class="row">
-                    <h3 id="location"></h3>
-                    </div>
-                    <div class="row">
-                    <h3 id="about"></h3>
-                    </div>
-                    </div>
-                    <div class="garden">
-                    <div>
-                      <h1>My Garden</h1>
-                      <h3 id="null-plant"></h3>
-                      <div id="print-garden"></div>
-                      <br/>
-                    </div>
-                    </div>
-                  
+        <nav class="navbar navbar-expand-lg navbar-light nav-garden">
+            <a id="brand" class="navbar-brand nav-css" href="/profile"> Let's <br /> Garden </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div id="nav-bar-right" class="navbar-nav ">
+
+                    <a id="nav-css" class="nav-item nav-link nav-css" href="/search">Search Plants</a>
+                    <a id="nav-css" class="nav-item nav-link nav-css" href="/profile">My Profile</a>
+                    <a id="nav-css" class="nav-item nav-link nav-css" href="/contact">Contact Us</a>
+                    <a id="nav-css" class="nav-item nav-link " href="/">Logout</a>
                 </div>
             </div>
-             </div>
+        </nav>
 
-             <script src="./js/profile.js"></script>
+    </header>
+
+    <div class="profile-body">
+        <div class="container">
+            <div class="profile-holder">
+                <div class="row">
+                    <div>
+                        <h1>Profile</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <h3 id="firstName"></h3>
+                </div>
+                <div class="row">
+                    <h3 id="location"></h3>
+                </div>
+                <div class="row">
+                    <h3 id="about"></h3>
+                </div>
+            </div>
+            <div class="garden">
+                <div>
+                    <h1>My Garden</h1>
+                    <h3 id="null-plant"></h3>
+                    <!-- <div id="print-garden"></div> -->
+                    <table class="table">
+                            <thead>
+                                </thead>
+                                <tbody id="print-garden">
+                                    </tbody>
+                                </table>
+                    <br />
+                </div>
+            </div>
+
+            <div class="garden">
+                <div>
+                    <h1>Plants Requested</h1>
+                    <table class="table">
+                            <thead>
+                                </thead>
+                                <tbody id="print-request">
+                                    </tbody>
+                                </table>
+                    <br />
+                </div>
+            </div>
+
+            <div class="garden">
+                <div>
+                    <h1>Plants Available to Swap</h1>
+                    <table class="table">
+                            <thead>
+                                </thead>
+                                <tbody id="print-swap">
+                                    </tbody>
+                                </table>
+                    <br />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <script src="./js/profile.js"></script>
 </body>
 
 </html>
