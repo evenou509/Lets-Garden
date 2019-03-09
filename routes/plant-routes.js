@@ -8,7 +8,7 @@ module.exports = function(app) {
         });
       });
 
-      app.get("/api/plants", function(req, res) {
+      app.get("/api/plants/:UserId", function(req, res) {
         db.Plant.findAll({
           where: 
             UserId = req.query.id,
@@ -28,4 +28,36 @@ module.exports = function(app) {
         });
     
       });
+
+      app.put("/api/plants/:id", function(req, res) {
+        db.Plant.update(      
+          req.body,
+          {
+            where: {
+              id: req.params.id
+            }
+          }).then(function(dbPlant) {
+          res.json(dbPlant);
+        });
+      });
+
+      app.get("/api/plants", function(req, res){
+        db.Plant.findAll({
+          where:
+              swap= req.params.swap
+          }).then(function(dbPlant){
+          res.json(dbPlant)
+        });
+      });
+
+      app.get("/api/plants/:UserId", function (req, res) {
+        db.User.findOne({
+            where: {
+                UserId: req.params.UserId
+            }
+        }).then(function (dbUser) {
+            res.json(dbUser);
+        });
+    });
+    
 }
