@@ -120,6 +120,14 @@ function printSwapData(result){
     $("#remove-swap").on("click", function () {
         event.preventDefault();
 
+        var id = $(this).attr('value');
+
+        $.ajax({
+            method: "DELETE",
+            url: "/api/plants/" + id
+        }).then(
+            location.reload()
+        );
     //  create update api to change swap in database to false
     // reload the page, this should remove plant from swap table to only be visible in garden table
 
@@ -130,6 +138,17 @@ function printSwapData(result){
 function printRequestData(result){
 
     // if statement for if result[i].request === true print to the requested section
+    if (result[i].request === true) {
+
+        const requestCard = $("<tr>")
+        requestCard.append("<td>" + result[i].plant_name + "</h3>")
+
+        requestCard.append("<td> <button class='add btn btn-success btn-sm' id='remove' value=" + result[i].id + "> Remove </button> </td>")
+        requestCard.append("<span> <button class='add btn btn-outline-dark' id='add'> Add to you Garden </button>  <button class='delete btn btn-outline-dark' id='delete'> Delete Request </button> </span>")
+
+
+        $("print-garden").append(requestCard)
+    }
     // then reload the page to remove from request
     // create option to add to garden, or delete request entirely
 }

@@ -28,4 +28,16 @@ module.exports = function(app) {
         });
     
       });
+
+      app.put("/api/plants/:id", function(req, res) {
+        db.Plant.update(
+          req.body,
+          {
+            where: {
+              id: req.body.id
+            }
+          }).then(function(dbPlant) {
+          res.json(dbPlant);
+        });
+      });
 }
