@@ -1,3 +1,7 @@
+//add zip code to plant model
+// enter user zip code to populate in local area
+
+
 $(document).ready(function(){
 
     const email = localStorage.email
@@ -5,6 +9,8 @@ $(document).ready(function(){
     loadUserData(email)
 
     searchPlants()
+
+    loadSwaps()
  })
  
  function loadUserData(email){
@@ -49,7 +55,6 @@ $(document).ready(function(){
 
       })
  }
-
 
  function printCard(plants) {
 
@@ -100,8 +105,6 @@ function addPlants(plants){
         })
     })
 
-
-
 }
 
 function swapPlants(plants){
@@ -130,8 +133,31 @@ function swapPlants(plants){
         var currentURL = window.location.origin;
 
         $.post(currentURL + "/api/plants", newPlant, function (data){
-            alert(plants.name + " has been added to your garden!")
+            alert(plants.name + " has been requested!")
             
         })
     })  
+}
+
+function loadSwaps(){
+
+    $.ajax({
+        url: "api/plants/",
+        method: "GET",
+
+    }).then( data => {
+        console.log(data)
+
+        for (var i = 0; i < data.length; i++) {
+
+            if (data[i].swap === true) {
+    
+                console.log(data[i].plant_name)
+    
+            }
+        }
+    
+    })
+       
+
 }

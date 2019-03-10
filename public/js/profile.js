@@ -1,9 +1,10 @@
+//add button for module with more data on plant
+
 $(document).ready(function () {
 
     const email = localStorage.email
 
     loadUserData(email)
-
 
 })
 
@@ -37,7 +38,7 @@ function loadPlants(data) {
 
     $.ajax({
         method: 'GET',
-        url: '/api/plants',
+        url: '/api/plants/' + userId ,
         where: {
             UserId: userId
         }
@@ -53,12 +54,16 @@ function loadPlants(data) {
 
         printRequestData(result)
 
+        swapPlant(data)
+
         removePlant(data)
+
+        requestButtons(data)
     })
 }
 
 function removePlant(data) {
-    $("#remove").on("click", function () {
+    $(".remove-plant").on("click", function () {
         event.preventDefault();
 
         var id = $(this).attr('value');
@@ -68,12 +73,36 @@ function removePlant(data) {
             url: "/api/plants/" + id
         }).then(
             location.reload()
+
         );
 
     })
 }
 
-function printGardenData(result){
+function swapPlant(data) {
+    $(".swap-plant").on("click", function () {
+        event.preventDefault();
+
+        var plantId = $(this).attr('value');
+
+        $.ajax({
+            method: 'PUT',
+            url: '/api/plants/' + plantId,
+            data: {
+                swap: true,
+            },
+            where: {
+                id: plantId
+            }
+        }).then(result => {
+            location.reload()
+
+        })
+
+    })
+}
+
+function printGardenData(result) {
 
     for (var i = 0; i < result.length; i++) {
 
@@ -82,44 +111,36 @@ function printGardenData(result){
             const gardenCard = $("<tr>");
 
             gardenCard.append("<td>" + result[i].plant_name + "</h3>")
-            // gardenCard.append("<p>" + result[i].description + "</p>")
-            // gardenCard.append("<p> Stay away from: " + result[i].pests + "</p>")
-            // gardenCard.append("<span> <button class='add btn btn-success' id='remove' value=" + result[i].id +"> Remove </button>  <button class='swap btn btn-success' id='swap'> Swap </button> </span>")
-            gardenCard.append("<td> <button class='add btn btn-success btn-sm' id='remove' value=" + result[i].id + "> Remove </button> </td>")
-            gardenCard.append("<td> <button class='swap btn btn-success btn-sm' id='swap' value=" + result[i].id + "> Swap </button> </td>")
+            gardenCard.append("<td> <button class='add remove-plant btn btn-success btn-sm' id='remove' value=" + result[i].id + "> Remove </button> </td>")
+            gardenCard.append("<td> <button class='swap swap-plant btn btn-success btn-sm' id='swap' value=" + result[i].id + "> Swap </button> </td>")
 
             $("#print-garden").append(gardenCard)
-   
+
         }
     }
 
 }
 
-function printSwapData(result){
+function printSwapData(result) {
 
     for (var i = 0; i < result.length; i++) {
 
-        if (result[i].garden === true) {
+        if (result[i].garden === true && result[i].swap === true) {
 
             const gardenCard = $("<tr>");
 
             gardenCard.append("<td>" + result[i].plant_name + "</h3>")
-            // gardenCard.append("<p>" + result[i].description + "</p>")
-            // gardenCard.append("<p> Stay away from: " + result[i].pests + "</p>")
-            // gardenCard.append("<span> <button class='add btn btn-success' id='remove' value=" + result[i].id +"> Remove </button>  <button class='swap btn btn-success' id='swap'> Swap </button> </span>")
-            gardenCard.append("<td> <button class='add btn btn-success btn-sm' id='remove-swap' value=" + result[i].id + "> Remove </button> </td>")
-            gardenCard.append("<td> <button class='swap btn btn-success btn-sm' id='swap' value=" + result[i].id + "> Swap </button> </td>")
-
-            $("#print-garden").append(gardenCard)
+            gardenCard.append("<td> <button class=' remove-swap add btn btn-success btn-sm' value=" + result[i].id + "> Remove </button> </td>")
 
             $("#print-swap").append(gardenCard)
-   
+
         }
     }
 
-    $("#remove-swap").on("click", function () {
+    $(".remove-swap").on("click", function () {
         event.preventDefault();
 
+<<<<<<< HEAD
         var id = $(this).attr('value');
 
         $.ajax({
@@ -130,12 +151,29 @@ function printSwapData(result){
         );
     //  create update api to change swap in database to false
     // reload the page, this should remove plant from swap table to only be visible in garden table
+=======
+        var plantId = $(this).attr('value');
 
+        // swap in database to false
+        $.ajax({
+            method: 'PUT',
+            url: '/api/plants/' + plantId,
+            data: {
+                swap: false,
+            },
+            where:{
+                id: plantId
+            }
+        }).then(result => {
+            location.reload()
+>>>>>>> e12e9331db6f09fecf0b9674b5a628e7e1fbf4c9
+
+        })
     })
 
 }
 
-function printRequestData(result){
+function printRequestData(result) {
 
     // if statement for if result[i].request === true print to the requested section
     if (result[i].request === true) {
@@ -151,4 +189,69 @@ function printRequestData(result){
     }
     // then reload the page to remove from request
     // create option to add to garden, or delete request entirely
+
+    for (var i = 0; i < result.length; i++) {
+
+        if (result[i].request === true) {
+
+            const gardenCard = $("<tr>");
+
+            gardenCard.append("<td>" + result[i].plant_name + "</h3>")
+            gardenCard.append("<td> <button class='add remove-request btn btn-success btn-sm' value=" + result[i].id + "> Remove </button> </td>")
+            gardenCard.append("<td> <button class='swap add-request btn btn-success btn-sm' value=" + result[i].id + "> Add </button> </td>")
+
+            $("#print-request").append(gardenCard)
+
+        }
+    }
+
+    
+}
+
+
+function requestButtons(data){
+    $(".remove-request").on("click", function () {
+        event.preventDefault();
+
+        
+        var id = $(this).attr('value');
+
+        $.ajax({
+            method: "DELETE",
+            url: "/api/plants/" + id
+        }).then(
+            location.reload()
+
+        );
+    })
+
+
+    $(".add-request").on("click", function () {
+        event.preventDefault();
+
+        const plantId = $(this).attr('value');
+
+        console.log(plantId)
+
+        const updateData= {
+            request: false,
+            garden: true
+
+        }
+        // add to garden
+
+        
+
+        $.ajax({
+            method: 'PUT',
+            url: '/api/plants/' + plantId,
+            data: updateData,
+            where:{
+                id: plantId
+            }
+        }).then(result => {
+            console.log(result)
+            
+        })
+    })
 }

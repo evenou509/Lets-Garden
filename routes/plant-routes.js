@@ -8,7 +8,7 @@ module.exports = function(app) {
         });
       });
 
-      app.get("/api/plants", function(req, res) {
+      app.get("/api/plants/:UserId", function(req, res) {
         db.Plant.findAll({
           where: 
             UserId = req.query.id,
@@ -30,14 +30,45 @@ module.exports = function(app) {
       });
 
       app.put("/api/plants/:id", function(req, res) {
+<<<<<<< HEAD
         db.Plant.update(
           req.body,
           {
             where: {
               id: req.body.id
+=======
+        db.Plant.update(      
+          req.body,
+          {
+            where: {
+              id: req.params.id
+>>>>>>> e12e9331db6f09fecf0b9674b5a628e7e1fbf4c9
             }
           }).then(function(dbPlant) {
           res.json(dbPlant);
         });
       });
+<<<<<<< HEAD
+=======
+
+      app.get("/api/plants", function(req, res){
+        db.Plant.findAll({
+          where:
+              swap= req.params.swap
+          }).then(function(dbPlant){
+          res.json(dbPlant)
+        });
+      });
+
+      app.get("/api/plants/:UserId", function (req, res) {
+        db.User.findOne({
+            where: {
+                UserId: req.params.UserId
+            }
+        }).then(function (dbUser) {
+            res.json(dbUser);
+        });
+    });
+    
+>>>>>>> e12e9331db6f09fecf0b9674b5a628e7e1fbf4c9
 }
