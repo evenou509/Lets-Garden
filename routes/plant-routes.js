@@ -30,26 +30,16 @@ module.exports = function(app) {
       });
 
       app.put("/api/plants/:id", function(req, res) {
-<<<<<<< HEAD
-        db.Plant.update(
-          req.body,
-          {
-            where: {
-              id: req.body.id
-=======
         db.Plant.update(      
           req.body,
           {
             where: {
               id: req.params.id
->>>>>>> e12e9331db6f09fecf0b9674b5a628e7e1fbf4c9
             }
           }).then(function(dbPlant) {
           res.json(dbPlant);
         });
       });
-<<<<<<< HEAD
-=======
 
       app.get("/api/plants", function(req, res){
         db.Plant.findAll({
@@ -70,5 +60,4 @@ module.exports = function(app) {
         });
     });
     
->>>>>>> e12e9331db6f09fecf0b9674b5a628e7e1fbf4c9
 }

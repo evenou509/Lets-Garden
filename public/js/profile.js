@@ -140,18 +140,6 @@ function printSwapData(result) {
     $(".remove-swap").on("click", function () {
         event.preventDefault();
 
-<<<<<<< HEAD
-        var id = $(this).attr('value');
-
-        $.ajax({
-            method: "DELETE",
-            url: "/api/plants/" + id
-        }).then(
-            location.reload()
-        );
-    //  create update api to change swap in database to false
-    // reload the page, this should remove plant from swap table to only be visible in garden table
-=======
         var plantId = $(this).attr('value');
 
         // swap in database to false
@@ -166,7 +154,6 @@ function printSwapData(result) {
             }
         }).then(result => {
             location.reload()
->>>>>>> e12e9331db6f09fecf0b9674b5a628e7e1fbf4c9
 
         })
     })
