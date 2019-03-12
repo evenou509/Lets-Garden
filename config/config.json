@@ -8,8 +8,8 @@
     },
     "production": {
       "use_env_variable": "JAWSDB_URL",
-      "username": "v7bq12fn4izlo0m2",
-      "password": "tdedtpt0cfc7hadv",
+      "username": "q7bb1y4u3evnra55",
+      "password": "kj4safv4eirg73ps",
       "host": "127.0.0.1",
       "dialect": "mysql"
     }
