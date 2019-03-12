@@ -60,4 +60,16 @@ module.exports = function(app) {
         });
     });
     
+  //   app.get("/api/plants/:plant_name", function (req, res) {
+  //     db.User.findAll({
+  //         where: {
+  //             plant_name: req.params.plant_name
+  //         }
+  //     }).then(function (dbUser) {
+  //         res.json(dbUser);
+  //     });
+  // });
+
+
+    
 }

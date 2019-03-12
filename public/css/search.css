@@ -67,11 +67,15 @@ body {
   background-color: plum;
   align-content: center;
   width: 550px;
-  height: 100px;
+ 
   border-radius: 5px;
 }
 
 .swap-cont {
   align-content: center;
   padding-left: 150px;
+}
+
+.avail{
+  margin: 10px;
 }

@@ -6,6 +6,8 @@ $(document).ready(function () {
 
     loadUserData(email)
 
+    
+
 })
 
 function loadUserData(email) {
@@ -26,7 +28,6 @@ function loadUserData(email) {
 
             var postAbout = $("#about").html(data.about)
 
-
             loadPlants(data)
         })
 }
@@ -43,22 +44,45 @@ function loadPlants(data) {
             UserId: userId
         }
     }).then(result => {
-        if (result === undefined || result.length == 0) {
+
+        console.log(result, "testing")
+        
+        let findUser = ""
+        
+    for (var i = 0; i < result.length; i++){
+        // if (result === undefined || result.length == 0 || result[i].UserId !== userId ) {
+        //     var postNull = $("#null-plant").html("<a role='button' href='/search' id='btn' class='btn btn-success'> Add Some Plants </a>")
+        // } else{
+        //     $("#null-plant").empty()
+        // }
+        let findUser = result[i].UserId
+
+
+    }
+
+        if (result === undefined || result.length == 0 || findUser !== userId ) {
             var postNull = $("#null-plant").html("<a role='button' href='/search' id='btn' class='btn btn-success'> Add Some Plants </a>")
-        }
-        console.log(result)
+        } 
+        // if (findUser === userId) {
+            
+          
+            
+        // }
 
-        printGardenData(result)
 
-        printSwapData(result)
+        printGardenData(result, userId)
 
-        printRequestData(result)
+        printSwapData(result, userId)
+
+        printRequestData(result, userId)
 
         swapPlant(data)
 
         removePlant(data)
 
         requestButtons(data)
+
+        loadModal(result)
     })
 }
 
@@ -102,37 +126,42 @@ function swapPlant(data) {
     })
 }
 
-function printGardenData(result) {
-
+function printGardenData(result, userId) {
+    
     for (var i = 0; i < result.length; i++) {
 
-        if (result[i].garden === true) {
+        if (result[i].garden === true && result[i].UserId === userId ) {
 
             const gardenCard = $("<tr>");
 
             gardenCard.append("<td>" + result[i].plant_name + "</h3>")
             gardenCard.append("<td> <button class='add remove-plant btn btn-success btn-sm' id='remove' value=" + result[i].id + "> Remove </button> </td>")
             gardenCard.append("<td> <button class='swap swap-plant btn btn-success btn-sm' id='swap' value=" + result[i].id + "> Swap </button> </td>")
+            gardenCard.append("<td> <button data-toggle='modal' data-target='#exampleModalCenter'  class='info btn btn-success btn-sm' id='info' value=" + result[i].id + "> Info </button> </td>")
+
 
             $("#print-garden").append(gardenCard)
+            $("#null-plant").hide()
+
 
         }
     }
 
 }
 
-function printSwapData(result) {
+function printSwapData(result, userId) {
 
     for (var i = 0; i < result.length; i++) {
 
-        if (result[i].garden === true && result[i].swap === true) {
+        if (result[i].garden === true && result[i].swap === true && result[i].UserId === userId)  {
 
-            const gardenCard = $("<tr>");
+            const gardenCard = $("<tr>"); 
 
             gardenCard.append("<td>" + result[i].plant_name + "</h3>")
             gardenCard.append("<td> <button class=' remove-swap add btn btn-success btn-sm' value=" + result[i].id + "> Remove </button> </td>")
 
             $("#print-swap").append(gardenCard)
+            
 
         }
     }
@@ -160,26 +189,13 @@ function printSwapData(result) {
 
 }
 
-function printRequestData(result) {
 
-    // if statement for if result[i].request === true print to the requested section
-    if (result[i].request === true) {
+function printRequestData(result, userId) {
 
-        const requestCard = $("<tr>")
-        requestCard.append("<td>" + result[i].plant_name + "</h3>")
-
-        requestCard.append("<td> <button class='add btn btn-success btn-sm' id='remove' value=" + result[i].id + "> Remove </button> </td>")
-        requestCard.append("<span> <button class='add btn btn-outline-dark' id='add'> Add to you Garden </button>  <button class='delete btn btn-outline-dark' id='delete'> Delete Request </button> </span>")
-
-
-        $("print-garden").append(requestCard)
-    }
-    // then reload the page to remove from request
-    // create option to add to garden, or delete request entirely
 
     for (var i = 0; i < result.length; i++) {
 
-        if (result[i].request === true) {
+        if (result[i].request === true && result[i].UserId === userId) {
 
             const gardenCard = $("<tr>");
 
@@ -194,7 +210,6 @@ function printRequestData(result) {
 
     
 }
-
 
 function requestButtons(data){
     $(".remove-request").on("click", function () {
@@ -212,7 +227,6 @@ function requestButtons(data){
         );
     })
 
-
     $(".add-request").on("click", function () {
         event.preventDefault();
 
@@ -225,10 +239,8 @@ function requestButtons(data){
             garden: true
 
         }
+
         // add to garden
-
-        
-
         $.ajax({
             method: 'PUT',
             url: '/api/plants/' + plantId,
@@ -237,8 +249,54 @@ function requestButtons(data){
                 id: plantId
             }
         }).then(result => {
-            console.log(result)
+            location.reload()
             
         })
+    })
+}
+
+function loadModal(result) {
+    $(".info").on("click", function () {
+        event.preventDefault();
+
+        $(".modal-body").empty()
+
+        var currentId = $(this).attr('value');
+             console.log(currentId)
+
+             console.log(result)
+            for (var i =0; i < result.length; i++){
+
+                if ( result[i].id == currentId){
+
+
+
+
+            $("#modal-title").html(result[i].plant_name)
+
+            const infoModal = $("<div>");
+
+            infoModal.append("<p>" + result[i].description + "</p>")
+            infoModal.append("<p> When to Plant: " + result[i].when_to_plant + "</p>")
+            infoModal.append("<p>" + result[i].growing_from_seed + "</p>")
+            infoModal.append("<p>" + result[i].spacing + "</p>")
+            infoModal.append("<p>" + result[i].transplanting + "</p>")
+            infoModal.append("<p>" + result[i].watering + "</p>")
+            infoModal.append("<p>" + result[i].optimal_sun + "</p>")
+            infoModal.append("<p> Stay Away From:" + result[i].pests + "</p>")
+            infoModal.append("<p> When to Harvest" + result[i].harvesting + "</p>")
+
+            $(".modal-body").append(infoModal)
+
+                    console.log("hello")
+                }
+            }
+
+            
+;
+
+
+      
+
     })
 }

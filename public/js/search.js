@@ -63,7 +63,6 @@ $(document).ready(function(){
         const plantCard = $("<div class='card'>");
         plantCard.append("<h3 id='card-title' class='card-title'>" + plants.name + "</h3>")
         plantCard.append("<p class='card-text'>" + plants.description + "</p>")
-        plantCard.append("<p class='card-text'> Stay away from: " + plants.pests + "</p>")
         plantCard.append("<span> <button class='add btn btn-outline-dark' id='add'> Add to you Garden </button>  <button class='swap btn btn-outline-dark' id='swap'> Request Swap </button> </span>")
 
         $("#print").append(plantCard)
@@ -141,23 +140,87 @@ function swapPlants(plants){
 
 function loadSwaps(){
 
+    let user = localStorage.id
     $.ajax({
         url: "api/plants/",
         method: "GET",
 
-    }).then( data => {
-        console.log(data)
+    }).then( plants => {
+        console.log(plants)
 
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 0; i < plants.length; i++) {
 
-            if (data[i].swap === true) {
+            if (plants[i].swap === true  ) {
     
-                console.log(data[i].plant_name)
+                console.log(plants[i].plant_name)
+
+                let requestPlant = plants[i]
+
+                const swapCard = $("<div class='avail col col-md-3'>");
+                swapCard.append("<h3 id='card-title' class='card-title'>" + requestPlant.plant_name + "</h3>")
+                swapCard.append("<button class='request btn btn-outline-dark' value='"+ requestPlant.id + "' id='request'> Request </button>")
+        
+                $("#print-available").append(swapCard)
+
+                console.log(plants[i])
+                request(plants)
+
+
     
             }
         }
     
     })
        
+}
+
+function request(plants){
+    $(".request").on("click", function(){
+        event.preventDefault();
+
+        let user = localStorage.id
+
+        let currentRequest = $(this).attr("value")
+
+        console.log(plants, "request btn")
+
+        for (var i = 0; i < plants.length; i++){
+
+            let requestPlant = plants[i]
+            if (requestPlant.id == currentRequest){
+                console.log("hello")
+
+                var newPlant = {
+                    plant_name: requestPlant.plant_name,
+                    description: requestPlant.description,
+                    optimal_sun: requestPlant.optimal_sun,
+                    when_to_plant:requestPlant.when_to_plant,
+                    growing_from_seed: requestPlant.growing_from_seed,
+                    spacing: requestPlant.spacing,
+                    transplanting: requestPlant.transplanting,
+                    watering: requestPlant.watering,
+                    pests: requestPlant.pests,
+                    harvesting: requestPlant.harvesting,
+                    garden: false,
+                    request: true,
+                    swap: false,
+                    UserId: user,
+                }
+        
+                console.log(newPlant)
+        
+                var currentURL = window.location.origin;
+        
+                $.post(currentURL + "/api/plants", newPlant, function (data){
+                    alert(requestPlant.plant_name + " has been requested!")
+                    
+                })
+
+            }
+        }
+   
+        
+  
+    })  
 
 }
