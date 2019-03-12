@@ -189,7 +189,9 @@ function printSwapData(result, userId) {
 
 }
 
+
 function printRequestData(result, userId) {
+
 
     for (var i = 0; i < result.length; i++) {
 
