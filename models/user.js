@@ -30,9 +30,10 @@ module.exports = function(sequelize, DataTypes) {
     }, {
       classMethods: {
         associate: function(models) {
-          User.hasOne(models.Plants);
+          User.hasMany(models.Plants);
         }
       }
     });
     return User;
   };
+

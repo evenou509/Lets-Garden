@@ -6,5 +6,14 @@ body{
 
 .home-holder{
     background-color: whitesmoke;
-    /* padding-top: 100px */
+    padding: 10px;
+}
+
+#garden-name{
+
+    font-family: 'Sacramento', cursive;
+    font-size: 50px;
+    width: 115px;
+    margin-left: 15px;
+    margin-bottom: 5px;
 }
