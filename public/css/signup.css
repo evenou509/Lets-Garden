@@ -3,12 +3,10 @@ body{
 
 }
 
-.page-body{
-    height: 800px;
-}
 
 .holder{
     background: #a29bfe;
+    margin-top: 15px;
     padding: 90px;
     width: 550px;
     border-radius: 10px;
